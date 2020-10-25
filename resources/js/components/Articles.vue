@@ -1,15 +1,22 @@
 <template>
     <div>
-    <h2> Articles </h2>
-    <ul class="pagination">
+    <div class="container-fluid">
+        <ul class="pagination">
         <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticles(pagination.prev_page_url)">Previous</a></li>
         <li class="page-item disabled"><a class="page-link text-dark" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
         <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticles(pagination.next_page_url)">Next</a></li>
     </ul>
-
+    </div>
     <div class="card card-body" v-for = "article in articles" v-bind:key="article.postId">
         <h3>{{article.title}}</h3>
         <p>{{article.description}}</p>
+    </div>
+    <div class="container-fluid">
+        <ul class="pagination">
+        <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticles(pagination.prev_page_url)">Previous</a></li>
+        <li class="page-item disabled"><a class="page-link text-dark" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
+        <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticles(pagination.next_page_url)">Next</a></li>
+    </ul>
     </div>
     </div>
 </template>

@@ -43,8 +43,8 @@ The above copyright notice and this permission notice shall be included in all c
       <footer class="footer">
         <div class="container-fluid">
           <div class="copyright">
-            &copy;  2020, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            &copy;  2020 made with <i class="material-icons">favorite</i> by
+            <a href="musumbidenis.co.ke" target="_blank">Musumbi Denis</a>.
           </div>
         </div>
       </footer>

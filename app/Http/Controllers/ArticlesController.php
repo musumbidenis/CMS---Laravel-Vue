@@ -14,15 +14,10 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('postId')->paginate(2);
+        $articles = Article::orderBy('postId')->paginate(3);
 
         return response()->json($articles);
     }
-    public function index2()
-    {
-        return view('layouts.master');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

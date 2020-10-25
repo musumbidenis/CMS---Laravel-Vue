@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/dashboard', 'PagesController@index');
 // Route::get('/register', 'AuthController@registrationForm');
 
 // Route::post('/register', 'AuthController@register');

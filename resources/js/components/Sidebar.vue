@@ -10,14 +10,14 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
-            <router-link class="nav-link" to="/">
+          <li :class="[currentPage.includes('dashboard') ? activeClass : '', 'nav-item']">
+            <router-link class="nav-link" to="/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </router-link>
           </li>
-          <li class="nav-item ">
-            <router-link class="nav-link" to="/article">
+          <li :class="[currentPage.includes('articles') ? activeClass : '', 'nav-item']">
+            <router-link class="nav-link" to="/articles">
               <i class="material-icons">dashboard</i>
               <p>Articles</p>
             </router-link>
@@ -26,3 +26,17 @@
       </div>
     </div>
 </template>
+<script>
+export default {
+    computed: {
+        currentPage(){
+            return this.$route.path;
+        }
+    },
+    data() {
+        return {
+            activeClass: 'active',
+        }
+    },
+}
+</script>
