@@ -18,6 +18,10 @@ class ArticlesController extends Controller
 
         return response()->json($articles);
     }
+    public function index2()
+    {
+        return view('layouts.master');
+    }
 
     /**
      * Show the form for creating a new resource.
