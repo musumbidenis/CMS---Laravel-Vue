@@ -50,6 +50,7 @@ var seq2 = 0,
   durations2 = 500;
 
 $(document).ready(function() {
+  $('.modal').appendTo("body");
 
   $('body').bootstrapMaterialDesign();
 

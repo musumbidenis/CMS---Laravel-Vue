@@ -14,7 +14,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('postId')->paginate(3);
+        $articles = Article::orderBy('postId', 'desc')->paginate(7);
 
         return response()->json($articles);
     }
@@ -36,7 +36,18 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+        $article = new Article();
+        $article->title = $request->title;
+        $article->description = $request->description;
+
+        $article->save();
+
+        return $article;
     }
 
     /**

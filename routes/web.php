@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/dashboard', 'PagesController@index');
+Route::get('/{any}', function () { return view('layouts.master'); })->where('any', '.*');
+
 // Route::get('/register', 'AuthController@registrationForm');
 
 // Route::post('/register', 'AuthController@register');
