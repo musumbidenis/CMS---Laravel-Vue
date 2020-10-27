@@ -14,7 +14,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('postId', 'desc')->paginate(7);
+        $articles = Article::orderBy('postId', 'desc')->get();
 
         return response()->json($articles);
     }

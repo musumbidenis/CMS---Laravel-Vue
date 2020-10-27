@@ -4,23 +4,23 @@
             <div class="float-left">
                 <button class="btn btn-info" data-toggle="modal" data-target="#addArticle">Add article</button>
            </div>
-            <div class="card card-body" v-for = "article in articles" v-bind:key="article.postId">
-                <h3>{{article.title}}</h3>
-                <p>{{article.description}}</p>
+            <div class="card card-body" v-for = "post in posts" :key="post.postId">
+                <h3>{{post.title}}</h3>
+                <p>{{post.description}}</p>
             </div>
-            <div class="container-fluid">
+            <!-- <div class="container-fluid">
                 <ul class="pagination">
                     <li :class="[{disabled: !pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticles(pagination.prev_page_url)">Previous</a></li>
                     <li class="page-item disabled"><a class="page-link text-dark" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
                     <li :class="[{disabled: !pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticles(pagination.next_page_url)">Next</a></li>
                </ul>
-            </div>
+            </div> -->
         </div>
        
         <!--Start Modal row-->
         <div class="row">
             <div class="col-md-12">
-                <div class="modal modal-primary" id="addArticle"
+                <div class="modal fade modal-primary" id="addArticle"
                     tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -62,45 +62,55 @@
 
 <script>
 export default {
+    computed: {
+        posts(){
+            return this.$store.getters.getArticles;
+        }
+    },
+
+    mounted() {
+        this.$store.dispatch("allArticles")
+    },
+
     data() {
         return {
             form: new Form({
                 title: '',
                 description: '',
             }),
-            articles: [],
-            article: {
-                postId: '',
-                title: '',
-                description: '',
-            },
-            pagination:{},
+            // articles: [],
+            // article: {
+            //     postId: '',
+            //     title: '',
+            //     description: '',
+            // },
+            // pagination:{},
         }
     },
 
-    created() {
-       this.fetchArticles();
-    },
+    // created() {
+    //    this.fetchArticles();
+    // },
 
     methods: {
-        fetchArticles(page_url){
-            page_url = page_url || 'api/articles'
-            let vm = this;
-            fetch(page_url)
-               .then(res => res.json())
-               .then( res =>{
-                   this.articles = res.data;
-                   vm.makePagination(res);
-               })
-               .catch(err => console.log(err));
-        },
+        // fetchArticles(page_url){
+        //     page_url = page_url || 'api/articles'
+        //     let vm = this;
+        //     fetch(page_url)
+        //        .then(res => res.json())
+        //        .then( res =>{
+        //            this.articles = res.data;
+        //            vm.makePagination(res);
+        //        })
+        //        .catch(err => console.log(err));
+        // },
 
         addArticle(){
             this.form.post('api/articles/new')
-            // .then(resp => {
-            //         $('#addArticle').modal('hide');
-            //         this.articles.push(response.data);
-            //     })
+            .then(resp => {
+                    $('#addArticle').modal('hide');
+                    this.$store.dispatch("allArticles");
+                })
         },
 
 
@@ -109,7 +119,7 @@ export default {
                 current_page: res.current_page,
                 last_page: res.last_page,
                 next_page_url: res.next_page_url,
-                prev_page_url: res.prev_page_url,
+                prev_page_url: res.prev_page_url,ed
             }
 
             this.pagination = pagination;
